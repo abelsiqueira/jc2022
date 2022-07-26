@@ -84,10 +84,10 @@ for (const room of roomNames) {
   width: 1600px !important;
   max-width: 1600px !important;
 }
-.card-header {
+/* .card-header {
   background-color: #000;
   color: #fff;
-}
+} */
 .Green {
   background-color: #bfb;
 }

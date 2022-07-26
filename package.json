@@ -1,0 +1,21 @@
+{
+  "name": "juliacon2022",
+  "version": "1.0.0",
+  "description": "Site to visualize JuliaCon 2022 talks in columns",
+  "main": "index.js",
+  "repository": "https://github.com/abelsiqueira/jc2022",
+  "author": "Abel Soares Siqueira",
+  "license": "MIT",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.0.0-alpha.4",
+    "vue": "^3.2.37"
+  },
+  "dependencies": {
+    "bulma": "^0.9.4"
+  }
+}

@@ -1,16 +1,18 @@
-# Hello VitePress
+# JuliaCon 2022 Schedule
+
+Under progress. No guarantees. Last minute.
 
 <div class="columns">
   <div v-for="(room, index) in day1" class="column">
     <h2>{{ index }}</h2>
     <div
       v-for="(title, i) in room.title"
-      :class='"card is-size-7 mb-0 " + index'
+      :class='"card is-size-6 mb-0 " + index'
       :id='index + "-" + room.start[i]'
-      :style="{ height: room.height[i] + 'px' }"
+      :style="{ height: room.height[i] * 10 + 'px' }"
     >
       <div class="card-header">
-        {{ room.start[i] }}, {{ room.duration[i] }}
+        {{ room.start[i] }}
       </div>
       <div class="card-content p-1">
         {{ title }}
@@ -62,22 +64,19 @@ for (const room of roomNames) {
     if (currTime < talk.start) {
       day1[room].title.push('EMPTY')
       day1[room].start.push(currTime)
-      const nextTalkStart = roomArray[i+1].start
+      const nextTalkStart = talk.start
       const d = timeToMinutes(nextTalkStart) - timeToMinutes(currTime)
       day1[room].duration.push(d)
-      day1[room].height.push(d * 10)
+      day1[room].height.push(d)
       currTime = minutesToTime(timeToMinutes(currTime) + d)
-      console.log(currTime)
     }
     day1[room].title.push(talk.title)
     day1[room].start.push(talk.start)
     day1[room].duration.push(timeToMinutes(talk.duration))
-    day1[room].height.push(timeToMinutes(talk.duration) * 10)
+    day1[room].height.push(timeToMinutes(talk.duration))
     currTime = minutesToTime(timeToMinutes(currTime) + timeToMinutes(talk.duration))
-    console.log(currTime)
   }
 }
-console.log(day1)
 </script>
 
 <style>
@@ -89,7 +88,22 @@ console.log(day1)
   background-color: #000;
   color: #fff;
 }
+.Green {
+  background-color: #bfb;
+}
 .Red {
-  background-color: #ffaaaa;
+  background-color: #fbb;
+}
+.Purple {
+  background-color: #fbf;
+}
+.Blue {
+  background-color: #bbf;
+}
+.BoF {
+  background-color: #bbb;
+}
+.JuMP {
+  background-color: #fdb;
 }
 </style>

@@ -13,15 +13,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm install
+          cache: yarn
+      - run: yarn install
 
       - name: Lint
-        run: npm run lint
+        run: yarn run lint
 
-      - run: npm list
+      - run: yarn list
 
       - name: Build
-        run: npx vite build --base=/jc2022/
+        run: yarn build --base=/jc2022/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

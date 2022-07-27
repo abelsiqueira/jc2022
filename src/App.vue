@@ -29,7 +29,8 @@
             </v-tab>
           </v-tabs>
           <br />
-          Cutoff time: {{ minutesToTime(cutOffTime + tzOffset * 60) }} (Warning: this can break time alignment)
+          Cutoff time: {{ minutesToTime(cutOffTime + tzOffset * 60) }} (Warning:
+          this can break time alignment)
           <v-slider
             v-model="cutOffTime"
             min="540"

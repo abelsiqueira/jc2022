@@ -16,7 +16,7 @@ jobs:
       - run: npm install
 
       - name: Build
-        run: vite build --base=/jc2022/
+        run: npx vite build --base=/jc2022/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

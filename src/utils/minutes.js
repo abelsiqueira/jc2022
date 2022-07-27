@@ -1,5 +1,4 @@
 export const timeToMinutes = (d) => {
-  console.log(d)
   const hh = d.slice(0, 2)
   const mm = d.slice(3, 5)
   return parseInt(hh) * 60 + parseInt(mm)

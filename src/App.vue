@@ -1,25 +1,23 @@
-# JuliaCon 2022 Schedule
-
-Under progress. No guarantees. Last minute.
-
-<div class="columns">
-  <div v-for="(room, index) in day1" class="column">
-    <h2>{{ index }}</h2>
-    <div
-      v-for="(title, i) in room.title"
-      :class='"card is-size-6 mb-0 " + index'
-      :id='index + "-" + room.start[i]'
-      :style="{ height: room.height[i] * 10 + 'px' }"
-    >
-      <div class="card-header">
-        {{ room.start[i] }}
-      </div>
-      <div class="card-content p-1">
-        {{ title }}
-      </div>
-    </div>
-  </div>
-</div>
+<template>
+  <section class="section">
+    <!-- <div class="container is-fullhd"> -->
+      <v-row no-gutters>
+        <v-col v-for="(room, index) in day1" cols="12" sm="2">
+          <h2>{{ index }}</h2>
+          <v-card
+            v-for="(title, i) in room.title"
+            :key=i
+            :class="title == 'EMPTY' ? '' : index"
+            :id='index + "-" + room.start[i]'
+            :style="{ height: room.height[i] * 10 + 'px' }"
+            :title="room.start[i]"
+            :text="title"
+          />
+        </v-col>
+      </v-row>
+    <!-- </div> -->
+  </section>
+</template>
 
 <script setup>
 import { schedule } from './schedule.json'
@@ -79,15 +77,7 @@ for (const room of roomNames) {
 }
 </script>
 
-<style>
-.container, .content, .content-container {
-  width: 1600px !important;
-  max-width: 1600px !important;
-}
-/* .card-header {
-  background-color: #000;
-  color: #fff;
-} */
+<style scoped>
 .Green {
   background-color: #bfb;
 }

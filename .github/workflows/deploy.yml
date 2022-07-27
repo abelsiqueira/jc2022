@@ -18,6 +18,8 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - run: npm list
+
       - name: Build
         run: npx vite build --base=/jc2022/
 

@@ -2,7 +2,10 @@
   <v-app>
     <v-container>
       <v-row>
-        <v-col cols="12" sm="4">
+        <v-col
+          cols="12"
+          sm="4"
+        >
           <span> What is your time zone: </span>
           <v-slider
             v-model="tzOffset"
@@ -22,7 +25,12 @@
 
     <v-container fluid>
       <v-row no-gutters>
-        <v-col v-for="(room, index) in day1" :key="index" cols="12" sm="2">
+        <v-col
+          v-for="(room, index) in day1"
+          :key="index"
+          cols="12"
+          sm="2"
+        >
           <h2>{{ index }}</h2>
           <v-card
             v-for="(title, i) in room.title"

@@ -32,14 +32,14 @@
           sm="2"
         >
           <h2>{{ index }}</h2>
-          <v-card
+          <talk-card
             v-for="(title, i) in room.title"
-            :id="index + '-' + room.start[i]"
             :key="i"
-            :class="title == 'EMPTY' ? '' : index"
-            :style="{ height: room.height[i] * 10 + 'px' }"
-            :title="minutesToTime(timeToMinutes(room.start[i]) + 60 * tzOffset)"
-            :text="title"
+            :height="room.height[i]"
+            :room="index"
+            :start="room.start[i]"
+            :title="title"
+            :tz-offset="tzOffset"
           />
         </v-col>
       </v-row>
@@ -50,23 +50,8 @@
 <script setup>
 import { schedule } from "./schedule.json"
 import { ref } from "vue"
-
-const timeToMinutes = (d) => {
-  const hh = d.slice(0, 2)
-  const mm = d.slice(3, 5)
-  return parseInt(hh) * 60 + parseInt(mm)
-}
-
-const minutesToTime = (mm) => {
-  const h = Math.floor(mm / 60)
-  const hh = h < 10 ? `0${h}` : `${h}`
-  mm = mm % 60
-  let d = `${hh}:${mm}`
-  if (mm == 0) {
-    d = d + "0"
-  }
-  return d
-}
+import TalkCard from "./components/TalkCard.vue"
+import { minutesToTime, timeToMinutes } from "./utils/minutes"
 
 const days = schedule.conference.days.slice(8, 11)
 const tzOffset = ref(0)

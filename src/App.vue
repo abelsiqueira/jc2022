@@ -1,26 +1,47 @@
 <template>
-  <section class="section">
-    <!-- <div class="container is-fullhd"> -->
-    <v-row no-gutters>
-      <v-col v-for="(room, index) in day1" :key="index" cols="12" sm="2">
-        <h2>{{ index }}</h2>
-        <v-card
-          v-for="(title, i) in room.title"
-          :id="index + '-' + room.start[i]"
-          :key="i"
-          :class="title == 'EMPTY' ? '' : index"
-          :style="{ height: room.height[i] * 10 + 'px' }"
-          :title="room.start[i]"
-          :text="title"
-        />
-      </v-col>
-    </v-row>
-    <!-- </div> -->
-  </section>
+  <v-app>
+    <v-container>
+      <v-row>
+        <v-col cols="12" sm="4">
+          <span> What is your time zone: </span>
+          <v-slider
+            v-model="tzOffset"
+            min="-12"
+            max="12"
+            step="1"
+          />
+          <v-text-field
+            v-model="tzOffset"
+            hide-details
+            density="compact"
+            type="number"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
+
+    <v-container fluid>
+      <v-row no-gutters>
+        <v-col v-for="(room, index) in day1" :key="index" cols="12" sm="2">
+          <h2>{{ index }}</h2>
+          <v-card
+            v-for="(title, i) in room.title"
+            :id="index + '-' + room.start[i]"
+            :key="i"
+            :class="title == 'EMPTY' ? '' : index"
+            :style="{ height: room.height[i] * 10 + 'px' }"
+            :title="minutesToTime(timeToMinutes(room.start[i]) + 60 * tzOffset)"
+            :text="title"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
 
 <script setup>
 import { schedule } from "./schedule.json"
+import { ref } from "vue"
 
 const timeToMinutes = (d) => {
   const hh = d.slice(0, 2)
@@ -40,6 +61,7 @@ const minutesToTime = (mm) => {
 }
 
 const days = schedule.conference.days.slice(8, 11)
+const tzOffset = ref(0)
 
 const roomNames = Object.keys(days[0].rooms)
 

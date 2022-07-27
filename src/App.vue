@@ -28,6 +28,14 @@
               {{ day }}
             </v-tab>
           </v-tabs>
+          <br />
+          Cutoff time: {{ minutesToTime(cutOffTime + tzOffset * 60) }} (Warning: this can break time alignment)
+          <v-slider
+            v-model="cutOffTime"
+            min="540"
+            max="1230"
+            step="10"
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -47,15 +55,19 @@
               sm="2"
             >
               <h2>{{ index }}</h2>
-              <talk-card
+              <div
                 v-for="(title, i) in room.title"
                 :key="i"
-                :height="room.height[i]"
-                :room="index"
-                :start="room.start[i]"
-                :title="title"
-                :tz-offset="tzOffset"
-              />
+              >
+                <talk-card
+                  v-if="timeToMinutes(room.start[i]) >= cutOffTime"
+                  :height="room.height[i]"
+                  :room="index"
+                  :start="room.start[i]"
+                  :title="title"
+                  :tz-offset="tzOffset"
+                />
+              </div>
             </v-col>
           </v-row>
         </v-window-item>
@@ -72,6 +84,7 @@ import { minutesToTime, timeToMinutes } from "./utils/minutes"
 
 const days = schedule.conference.days.slice(8, 11)
 const tzOffset = ref(0)
+const cutOffTime = ref(9 * 60)
 
 const roomNames = Object.keys(days[0].rooms)
 const schedulePerDay = {}

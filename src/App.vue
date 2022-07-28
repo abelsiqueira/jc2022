@@ -137,25 +137,6 @@ for (const day of days) {
 </script>
 
 <style scoped>
-.Green {
-  background-color: #bfb;
-}
-.Red {
-  background-color: #fbb;
-}
-.Purple {
-  background-color: #fbf;
-}
-.Blue {
-  background-color: #bbf;
-}
-.BoF {
-  background-color: #bbb;
-}
-.JuMP {
-  background-color: #fdb;
-}
-
 .v-tab--selected {
   background-color: #66a;
 }

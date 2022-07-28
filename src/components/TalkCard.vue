@@ -6,7 +6,7 @@
     <v-card
       :class="cardClass"
       :text="title"
-      :title="cardStart"
+      :title="minutesToTime(timeToMinutes(start) + 60 * tzOffset)"
     />
   </div>
 </template>
@@ -24,9 +24,6 @@ const props = defineProps({
 const cardClass = props.title == "EMPTY" ? "empty" : props.room
 const cardHeight = ref(
   props.height * 10 + Math.floor(props.height / 10 - 1) * 4
-)
-const cardStart = ref(
-  minutesToTime(timeToMinutes(props.start) + 60 * props.tzOffset)
 )
 </script>
 

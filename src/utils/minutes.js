@@ -8,9 +8,11 @@ export const minutesToTime = (mm) => {
   const h = Math.floor(mm / 60)
   const hh = h < 10 ? `0${h}` : `${h}`
   mm = mm % 60
-  let d = `${hh}:${mm}`
-  if (mm == 0) {
-    d = d + "0"
+  let d = `${hh}:`
+  if (mm < 10) {
+    d += "0" + mm
+  } else {
+    d += mm
   }
   return d
 }
